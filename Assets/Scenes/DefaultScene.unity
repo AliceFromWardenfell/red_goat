@@ -410,6 +410,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 6157158076282649676, guid: 9058114815d35c24dab6c027fdafde14, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157158076282649676, guid: 9058114815d35c24dab6c027fdafde14, type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     - target: {fileID: 6157158076282649678, guid: 9058114815d35c24dab6c027fdafde14, type: 3}
       propertyPath: m_RootOrder
       value: 3
