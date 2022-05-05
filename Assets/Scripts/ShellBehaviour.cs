@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShellBehaviour : MonoBehaviour
 {
-    public float m_ShellLifeTime = 3f;
+    public float m_ShellLifeTime = 2f;
 
     void Start()
     {
