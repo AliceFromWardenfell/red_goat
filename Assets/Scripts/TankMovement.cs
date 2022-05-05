@@ -6,6 +6,7 @@ public class TankMovement : MonoBehaviour
 {
     public float m_Speed = 12f;
     public float m_TurnSpeed = 180f;
+    public static Vector3 m_CurrentPosition;
 
     private Rigidbody m_Rigidbody;
     private float m_MovementInputValue;
@@ -34,6 +35,7 @@ public class TankMovement : MonoBehaviour
 
     void Update()
     {
+        m_CurrentPosition = transform.position;
         m_MovementInputValue = Input.GetAxis("Vertical");
         m_TurnInputValue = Input.GetAxis("Horizontal");
     }

@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 6157158076282649673}
   - component: {fileID: 6157158076282649672}
   - component: {fileID: 6157158076282649676}
+  - component: {fileID: 8398544056907343826}
   m_Layer: 0
   m_Name: EnemyTank
   m_TagString: Vehicle
@@ -389,3 +390,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &8398544056907343826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157158076282649675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf01575ea81699469491d024ac3d528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Shell: {fileID: 2904698304329341873, guid: 16f4fe0bc330f2545a80280d0bb0d295, type: 3}
+  m_ShellLaunchTransform: {fileID: 447622081}
+  m_ShootingRate: 1
+  m_TankSpeed: 1
