@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShellBehaviour : MonoBehaviour
 {
-    public float m_ShellLifeTime = 2f;
+    public float m_ShellLifeTime = 4f;
 
     void Start()
     {
@@ -13,7 +13,12 @@ public class ShellBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider Other)
     {
-        if (Other.tag == "Vehicle")
+        if (Other.tag == "Enemy")
+        {
+            Destroy(Other.gameObject);
+            EnemyTankSpawner.m_CurrentEnemyAmount--;
+        }
+        if (Other.tag == "Player")
         {
             Destroy(Other.gameObject);
         }
