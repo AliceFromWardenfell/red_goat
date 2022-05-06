@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TankMovement : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class TankMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;
     private float m_MovementInputValue;
     private float m_TurnInputValue;
+    private PhotonView m_View;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
+
     private void OnEnable()
     {
         m_Rigidbody.isKinematic = false;
@@ -30,20 +33,26 @@ public class TankMovement : MonoBehaviour
 
     void Start()
     {
-
+        m_View = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        m_CurrentPosition = transform.position;
-        m_MovementInputValue = Input.GetAxis("Vertical");
-        m_TurnInputValue = Input.GetAxis("Horizontal");
+        if (m_View.IsMine)
+        {
+            m_CurrentPosition = transform.position;
+            m_MovementInputValue = Input.GetAxis("Vertical");
+            m_TurnInputValue = Input.GetAxis("Horizontal");
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
-        Turn();
+        if (m_View.IsMine)
+        {
+            Move();
+            Turn();
+        }
     }
 
     private void Move()

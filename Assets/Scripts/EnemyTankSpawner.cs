@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyTankSpawner : MonoBehaviour
 {
     public Transform[] m_SpawnPoint;
-    public GameObject EnemyTank;
+    public GameObject m_EnemyTank;
     public int m_MaxEnemyAmount = 4;
     public static int m_CurrentEnemyAmount;
 
@@ -21,7 +21,7 @@ public class EnemyTankSpawner : MonoBehaviour
         if (m_CurrentEnemyAmount < m_MaxEnemyAmount)
         {
             int RandomSpawnPoint = Random.Range(0, m_SpawnPointsNumber);
-            Instantiate(EnemyTank, m_SpawnPoint[RandomSpawnPoint].position, m_SpawnPoint[RandomSpawnPoint].rotation);
+            Instantiate(m_EnemyTank, m_SpawnPoint[RandomSpawnPoint].position, m_SpawnPoint[RandomSpawnPoint].rotation);
             m_CurrentEnemyAmount++;
         }
     }
