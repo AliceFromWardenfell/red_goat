@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerShellBehaviour : MonoBehaviour
 {
@@ -13,12 +14,12 @@ public class PlayerShellBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider Other)
     {
-        if (Other.tag == "Enemy")
+        if (Other.tag == "Enemy" && PhotonNetwork.IsMasterClient)
         {
-            Destroy(Other.gameObject);
+            PhotonNetwork.Destroy(Other.gameObject);
             EnemyTankSpawner.m_CurrentEnemyAmount--;
         }
-        if (Other.tag == "Player")
+        if (Other.tag == "Player" && PhotonNetwork.IsMasterClient)
         {
             // Heal Ally
         }

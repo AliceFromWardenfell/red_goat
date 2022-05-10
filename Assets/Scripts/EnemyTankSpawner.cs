@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class EnemyTankSpawner : MonoBehaviour
 {
@@ -18,11 +19,12 @@ public class EnemyTankSpawner : MonoBehaviour
 
     void Update()
     {
-        if (m_CurrentEnemyAmount < m_MaxEnemyAmount)
+        if (m_CurrentEnemyAmount < m_MaxEnemyAmount && PhotonNetwork.IsMasterClient)
         {
             int RandomSpawnPoint = Random.Range(0, m_SpawnPointsNumber);
-            Instantiate(m_EnemyTank, m_SpawnPoint[RandomSpawnPoint].position, m_SpawnPoint[RandomSpawnPoint].rotation);
             m_CurrentEnemyAmount++;
+            PhotonNetwork.Instantiate(m_EnemyTank.name, m_SpawnPoint[RandomSpawnPoint].position, m_SpawnPoint[RandomSpawnPoint].rotation);
+            
         }
     }
 }

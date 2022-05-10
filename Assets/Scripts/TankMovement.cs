@@ -7,7 +7,7 @@ public class TankMovement : MonoBehaviour
 {
     public float m_Speed = 12f;
     public float m_TurnSpeed = 180f;
-    public static Vector3 m_CurrentPosition;
+    public Vector3 m_CurrentPosition;
 
     private Rigidbody m_Rigidbody;
     private float m_MovementInputValue;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -10,14 +11,20 @@ public class EnemyBehaviour : MonoBehaviour
     public float m_TankSpeed = 5f;
     public float m_ShellSpeed = 5f;
 
+    private GameObject m_PersonalTarget;
+
     void Start()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+        GameObject[] PlayerTanks = GameObject.FindGameObjectsWithTag("Player");
+        m_PersonalTarget = PlayerTanks[Random.Range(0, PlayerTanks.Length)];
         StartCoroutine(DelayedShot());
     }
 
     void Update()
     {
-        transform.LookAt(TankMovement.m_CurrentPosition);
+        if (!PhotonNetwork.IsMasterClient) return;
+        transform.LookAt(m_PersonalTarget.transform.position);
         GetComponent<Rigidbody>().velocity = transform.forward * m_TankSpeed;
     }
 

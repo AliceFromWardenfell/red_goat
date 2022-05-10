@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
     public TMP_InputField m_CreateInput;
     public TMP_InputField m_JoinInput;
+    public int m_MaxPLayerNumber = 2;
 
     public void CreateRoom()
     {

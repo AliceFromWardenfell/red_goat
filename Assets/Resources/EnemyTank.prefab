@@ -406,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shell: {fileID: 2904698304329341873, guid: 609c1c8e268fb38448081db889488b7b, type: 3}
   m_ShellLaunchTransform: {fileID: 447622081}
-  m_ShootingRate: 8
+  m_ShootingRate: 40
   m_TankSpeed: 1
   m_ShellSpeed: 5
 --- !u!114 &-4042782591879653512

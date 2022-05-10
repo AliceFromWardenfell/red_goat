@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyShellBehaviour : MonoBehaviour
 {
-    public float m_ShellLifeTime = 4f;
+    public float m_ShellLifeTime = 3f;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class EnemyShellBehaviour : MonoBehaviour
         if (Other.tag == "Player")
         {
             Destroy(Other.gameObject);
+            //PlayerTankSpawner.m_CurrentPlayerNumber--;
         }
         Destroy(gameObject);
     }
