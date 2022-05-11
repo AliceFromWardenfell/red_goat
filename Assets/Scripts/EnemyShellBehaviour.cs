@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class EnemyShellBehaviour : MonoBehaviour
+public class EnemyShellBehaviour : MonoBehaviourPun
 {
     public float m_ShellLifeTime = 3f;
 
@@ -13,11 +14,31 @@ public class EnemyShellBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider Other)
     {
-        if (Other.tag == "Player")
+        if (Other.CompareTag("Player"))
         {
-            Destroy(Other.gameObject);
-            //PlayerTankSpawner.m_CurrentPlayerNumber--;
+            PhotonView OtherView = Other.GetComponent<PhotonView>();
+            if (OtherView)
+            {
+                photonView.RPC("DestroyPlayer", RpcTarget.All, OtherView.ViewID);
+            }
         }
+        photonView.RPC("BlowUp", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void BlowUp()
+    {
         Destroy(gameObject);
     }
+
+    [PunRPC]
+    public void DestroyPlayer(int EnemyViewID)
+    {
+        PhotonView EnemyView = PhotonView.Find(EnemyViewID);
+        if (EnemyView.IsMine)
+        {
+            PhotonNetwork.Destroy(EnemyView.gameObject);
+        }
+    }
+
 }

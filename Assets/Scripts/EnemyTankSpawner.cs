@@ -24,7 +24,6 @@ public class EnemyTankSpawner : MonoBehaviour
             int RandomSpawnPoint = Random.Range(0, m_SpawnPointsNumber);
             m_CurrentEnemyAmount++;
             PhotonNetwork.Instantiate(m_EnemyTank.name, m_SpawnPoint[RandomSpawnPoint].position, m_SpawnPoint[RandomSpawnPoint].rotation);
-            
         }
     }
 }

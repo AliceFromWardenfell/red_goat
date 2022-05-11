@@ -5,9 +5,9 @@ using Photon.Pun;
 
 public class PlayerShellBehaviour : MonoBehaviourPun
 {
-    public float m_ShellLifeTime = 4f;
+    public float m_ShellLifeTime = 3f;
 
-    private PhotonView m_View;
+    private PhotonView m_View; //?
 
     void Start()
     {
@@ -17,23 +17,20 @@ public class PlayerShellBehaviour : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider Other)
     {
-        if (Other.tag == "Enemy")
+        if (Other.CompareTag("Enemy"))
         {
-            //PhotonNetwork.Destroy(Other.gameObject);
             PhotonView OtherView = Other.GetComponent<PhotonView>();
             if (OtherView)
             {
                 photonView.RPC("DestroyEnemy", RpcTarget.MasterClient, OtherView.ViewID);
             }
         }
-        if (Other.tag == "Player")
+        if (Other.CompareTag("Player"))
         {
             // Heal Ally
         }
 
         photonView.RPC("BlowUp", RpcTarget.All);
-        
-
     }
 
     [PunRPC]

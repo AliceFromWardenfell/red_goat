@@ -17,13 +17,16 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!PhotonNetwork.IsMasterClient) return;
         GameObject[] PlayerTanks = GameObject.FindGameObjectsWithTag("Player");
-        m_PersonalTarget = PlayerTanks[Random.Range(0, PlayerTanks.Length)];
+        if (PlayerTanks.Length > 0)
+        {
+            m_PersonalTarget = PlayerTanks[Random.Range(0, PlayerTanks.Length)];
+        }
         StartCoroutine(DelayedShot());
     }
 
     void Update()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (!PhotonNetwork.IsMasterClient || !m_PersonalTarget) return;
         transform.LookAt(m_PersonalTarget.transform.position);
         GetComponent<Rigidbody>().velocity = transform.forward * m_TankSpeed;
     }

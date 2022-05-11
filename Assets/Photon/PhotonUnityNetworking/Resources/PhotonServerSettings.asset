@@ -42,6 +42,7 @@ MonoBehaviour:
   - GetShot
   - BlowUp
   - DestroyEnemy
+  - DestroyPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
