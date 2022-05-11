@@ -16,6 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         if (!PhotonNetwork.IsMasterClient) return;
+        
         GameObject[] PlayerTanks = GameObject.FindGameObjectsWithTag("Player");
         if (PlayerTanks.Length > 0)
         {
@@ -27,6 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         if (!PhotonNetwork.IsMasterClient || !m_PersonalTarget) return;
+        
         transform.LookAt(m_PersonalTarget.transform.position);
         GetComponent<Rigidbody>().velocity = transform.forward * m_TankSpeed;
     }
@@ -34,6 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
     IEnumerator DelayedShot()
     {
         yield return new WaitForSeconds(m_ShootingRate);
+        
         GameObject ShellInstance = PhotonNetwork.Instantiate(m_Shell.name, m_ShellLaunchTransform.position, m_ShellLaunchTransform.rotation);
         ShellInstance.GetComponent<Rigidbody>().velocity = m_ShellSpeed * m_ShellLaunchTransform.forward;
         StartCoroutine(DelayedShot());

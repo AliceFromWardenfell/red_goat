@@ -22,11 +22,11 @@ public class EnemyShellBehaviour : MonoBehaviourPun
                 photonView.RPC("DestroyPlayer", RpcTarget.All, OtherView.ViewID);
             }
         }
-        photonView.RPC("BlowUp", RpcTarget.All);
+        photonView.RPC("BlowShell", RpcTarget.All);
     }
 
     [PunRPC]
-    public void BlowUp()
+    public void BlowShell()
     {
         Destroy(gameObject);
     }

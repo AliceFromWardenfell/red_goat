@@ -7,11 +7,8 @@ public class PlayerShellBehaviour : MonoBehaviourPun
 {
     public float m_ShellLifeTime = 3f;
 
-    private PhotonView m_View; //?
-
     void Start()
     {
-        m_View = GetComponent<PhotonView>();
         Destroy(gameObject, m_ShellLifeTime);
     }
 
@@ -27,14 +24,13 @@ public class PlayerShellBehaviour : MonoBehaviourPun
         }
         if (Other.CompareTag("Player"))
         {
-            // Heal Ally
+            //Heal ally
         }
-
-        photonView.RPC("BlowUp", RpcTarget.All);
+        photonView.RPC("BlowShell", RpcTarget.All);
     }
 
     [PunRPC]
-    public void BlowUp()
+    public void BlowShell()
     {
         Destroy(gameObject);
     }
