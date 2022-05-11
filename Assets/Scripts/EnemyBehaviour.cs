@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public Rigidbody m_Shell;
+    public GameObject m_Shell;
     public Transform m_ShellLaunchTransform;
     public float m_ShootingRate = 5f;
     public float m_TankSpeed = 5f;
@@ -31,8 +31,8 @@ public class EnemyBehaviour : MonoBehaviour
     IEnumerator DelayedShot()
     {
         yield return new WaitForSeconds(m_ShootingRate);
-        Rigidbody ShellInstance = Instantiate(m_Shell, m_ShellLaunchTransform.position, m_ShellLaunchTransform.rotation) as Rigidbody;
-        ShellInstance.velocity = m_ShellSpeed * m_ShellLaunchTransform.forward;
+        GameObject ShellInstance = PhotonNetwork.Instantiate(m_Shell.name, m_ShellLaunchTransform.position, m_ShellLaunchTransform.rotation);
+        ShellInstance.GetComponent<Rigidbody>().velocity = m_ShellSpeed * m_ShellLaunchTransform.forward;
         StartCoroutine(DelayedShot());
     }
 }
